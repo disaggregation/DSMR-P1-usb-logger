@@ -5,3 +5,5 @@
 # ignore log files
 logs/lastP1read.txt
 logs
+
+.DS_Store
