@@ -1,6 +1,5 @@
 import time
 
-
 print ("P1 read test started..." + time.strftime("%Y-%m-%d %H:%M:%S"))
 
 try:
