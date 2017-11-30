@@ -6,7 +6,7 @@ Open Source project to log data from the DSMR (P1) meter via usb serial cable
 To install the P1 USB reader run the following commands in your terminal:
 
 ```
-sudo wget https://github.com/disaggregation/logger-DSMR-P1-usb/blob/master/install.sh
+sudo wget https://raw.githubusercontent.com/disaggregation/logger-DSMR-P1-usb/master/install.sh
 
 chmod +x install.sh && sudo ./install.sh
 ```
