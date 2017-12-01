@@ -8,7 +8,7 @@ To install the P1 USB reader run the following commands in your terminal:
 ```
 sudo wget https://raw.githubusercontent.com/disaggregation/logger-DSMR-P1-usb/master/install.sh
 
-chmod +x install.sh && sudo ./install.sh
+sudo chmod +x install.sh && sudo ./install.sh
 ```
 
 The schedular will launch at reboot and record data every 10 seconds, which leads to about 1Mb per day. Make sure you have enough space..
