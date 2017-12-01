@@ -1,8 +1,7 @@
 # P1 DSMR reader for the open source disaggregation project
 Open Source project to log data from the DSMR (P1) meter via usb serial cable
 
-## installation
-
+## Installation
 To install the P1 USB reader run the following commands in your terminal:
 
 ```
@@ -11,15 +10,16 @@ sudo wget https://raw.githubusercontent.com/disaggregation/logger-DSMR-P1-usb/ma
 sudo chmod +x install.sh && sudo ./install.sh
 ```
 
-The schedular will launch at reboot and record data every 10 seconds, which leads to about 1Mb per day. Make sure you have enough space..
+After the installer is finisched, the schedular will launch directly and at every reboot!
+The P1 data is recorded every 10 seconds, which leads to about aprox. 1MB per day. Make sure you have enough space!
 
-## hardware requirements
+## Hardware requirements
 - Raspberry Pi
 - USB <> Serial cable (https://www.sossolutions.nl/slimme-meter-kabel)
 
 ## Data storage
-The data will be stored to a sqlite file 'data/yourhash256edmeterserialnumber.db'
-Mysql logging is support, but required more setup skills.
+A SQlite database file (.db) wil be created to store the P1 data, the filename is a MD5 hash name.
+(Mysql logging is support, but required more setup skills.)
 
 # Disaggregation
 This repository will soon be updates with a working disaggregation model that determines which subload are behind your energy meter.
