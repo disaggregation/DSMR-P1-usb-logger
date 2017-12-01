@@ -5,7 +5,16 @@
 version = "2.0"
 import sys
 import serial
-import signal, os
+import signal
+import os
+
+# Variables
+cwd = os.path.dirname(os.path.realpath(__file__))
+logfile = cwd + "/logs/lastP1read.txt"
+
+# Create "logs" folder if not exists.
+if not os.path.exists(os.path.dirname(logfile)):
+  os.makedirs(os.path.dirname(logfile))
 
 ##############################################################################
 #Main program
@@ -96,7 +105,6 @@ except:
 	ser.bytesize=serial.SEVENBITS
 	ser.parity=serial.PARITY_EVEN
 	
-
-text_file = open("logs/lastP1read.txt", "w")
+text_file = open(logfile, "w")
 text_file.write(telegram)
 text_file.close()
