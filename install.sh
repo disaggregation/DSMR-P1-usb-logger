@@ -4,12 +4,21 @@
 # OS/HW: Raspbian / Raspberry Pi
 # Path: /home/pi/disaggregation
 
-# Get Started:
-# Download with: sudo wget https://github.com/disaggregation/logger-DSMR-P1-usb/blob/master/install.sh
-# Start with: chmod +x install.sh && sudo ./install.sh
+# Get started:
+# Download with: sudo wget https://raw.githubusercontent.com/disaggregation/logger-DSMR-P1-usb/master/install.sh
+# Start with: sudo chmod +x install.sh && sudo ./install.sh
 
 #***************************************************************************
-printf "\e[33mInstallation - disaggregation_logger-DSMR-P1-usb v1.10\n\n"
+printf "\e[33mInstallation - disaggregation_logger-DSMR-P1-usb v1.12\n\n"
+#***************************************************************************
+printf "\e[96m* CHECK\n"
+printf "\e[96m  - Check if USB Serial port is found..."
+if ls /dev | grep 'ttyUSB0' >/dev/null 2>&1; then
+  printf "\e[92mOK\e[0m\n"
+else
+  printf "\e[91mNOT FOUND!, aborting installation!\e[0m\n"
+  exit
+fi
 #***************************************************************************
 printf "\e[96m* GENERAL\n"
 printf "\e[96m  - Update apt-get lists..."
@@ -60,6 +69,10 @@ echo "@reboot /usr/bin/python /home/pi/disaggregation/logger-DSMR-P1-usb-master/
 crontab tempcron
 sudo rm tempcron
 printf "\e[92mOK\e[0m\n"
+#***************************************************************************
+printf "\e[96m  - Start DSMR P1 script..."
+sudo nohup /usr/bin/python /home/pi/disaggregation/logger-DSMR-P1-usb-master/schedule_p1_reader.py </dev/null >/dev/null 2>&1 &
+printf "\e[92m - OK\e[0m\n"
 #***************************************************************************
 printf "\n\e[33mEnd of installation - disaggregation_logger-DSMR-P1-usb\n"
 #***************************************************************************
