@@ -2,7 +2,7 @@ import time
 import os
 
 # Chang to current work directory
-os.chdir("/home/pi/disaggregation/logger-DSMR-P1-usb-master")
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 def job():
   print "P1 read started..." + time.strftime("%Y-%m-%d %H:%M:%S")

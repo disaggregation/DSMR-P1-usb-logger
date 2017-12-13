@@ -11,6 +11,10 @@
 #***************************************************************************
 printf "\e[33mInstallation - disaggregation_logger-DSMR-P1-usb v1.12\n\n"
 #***************************************************************************
+log_dir="/home/pi/dissagregation"
+read -e -i "$log_dir" -p "Please enter your name: " input
+log_dir="${input:-$name}"
+
 printf "\e[96m* CHECK\n"
 printf "\e[96m  - Check if USB Serial port is found..."
 if ls /dev | grep 'ttyUSB0' >/dev/null 2>&1; then
@@ -37,25 +41,25 @@ printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m* DSRM LOGGER FILES\n"
 printf "\e[96m  - Creating folder structure(s)..."
-sudo mkdir /home/pi/disaggregation &>/dev/null
+sudo mkdir $log_dir &>/dev/null
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Downloading files..."
-sudo rm /home/pi/disaggregation/master.zip &>/dev/null
-sudo wget -q https://github.com/disaggregation/logger-DSMR-P1-usb/archive/master.zip -O /home/pi/disaggregation/master.zip &>/dev/null
+sudo rm ${log_dir}/master.zip &>/dev/null
+sudo wget -q https://github.com/disaggregation/logger-DSMR-P1-usb/archive/master.zip -O ${log_dir}/master.zip &>/dev/null
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Extracting files..."
-sudo unzip -q -o /home/pi/disaggregation/master.zip -d /home/pi/disaggregation &>/dev/null
+sudo unzip -q -o ${log_dir}/master.zip -d ${log_dir} &>/dev/null
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Cleanup files..."
-sudo rm /home/pi/disaggregation/master.zip &>/dev/null
+sudo rm ${log_dir}/master.zip &>/dev/null
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Changing file permissions and rights to pi..."
-sudo chmod -R 777 /home/pi/disaggregation/logger-DSMR-P1-usb-master &>/dev/null
-sudo chown -R pi /home/pi/disaggregation/logger-DSMR-P1-usb-master &>/dev/null
+sudo chmod -R 777 ${log_dir} &>/dev/null
+sudo chown -R pi ${log_dir} &>/dev/null
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m* PYTHON DEPENDENCIES\n"
@@ -65,13 +69,14 @@ printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m* CONFIGURE\n"
 printf "\e[96m  - Set CRON-job..."
-echo "@reboot /usr/bin/python /home/pi/disaggregation/logger-DSMR-P1-usb-master/schedule_p1_reader.py 2>&1" >> tempcron
+sudo cd ${log_dir}/logger-DSMR-P1-usb-master
+echo "@reboot screen -dmS atboot_P1_logger python schedule_p1_reader.py 2>&1" >> tempcron
 crontab tempcron
 sudo rm tempcron
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Start DSMR P1 script..."
-sudo nohup /usr/bin/python /home/pi/disaggregation/logger-DSMR-P1-usb-master/schedule_p1_reader.py </dev/null >/dev/null 2>&1 &
+sudo screen -dmS atboot_P1_logger python schedule_p1_reader.py 2>&1 &>/dev/null 
 printf "\e[92m - OK\e[0m\n"
 #***************************************************************************
 printf "\n\e[33mEnd of installation - disaggregation_logger-DSMR-P1-usb\n"

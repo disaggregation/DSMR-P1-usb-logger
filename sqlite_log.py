@@ -5,9 +5,9 @@ import hashlib
 #check if serial number is given, else save data to example.db
 try:
 	db_name = hashlib.md5(str(serial_number)).hexdigest() #hash serial number for security reasons (eg. data sharing with no backtrace)
-	db = db_name+'.db'
+	db = os.path.join(os.path.dirname(os.path.realpath(__file__)),'logs',db_name+'.db')
 except:
-	db = 'example.db'
+	db = os.path.join(os.path.dirname(os.path.realpath(__file__)),'logs','example.db')
 
 # Create table (if not database dous not exist)
 if os.path.isfile(db):

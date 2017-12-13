@@ -4,4 +4,5 @@
 
 # ignore log files
 logs/lastP1read.txt
-logs
+logs/*
+!logs/example.db
