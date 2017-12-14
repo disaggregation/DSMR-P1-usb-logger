@@ -12,5 +12,5 @@ def job():
 
 while True:
   job()
-  time.sleep(1)
+  time.sleep(10)
 

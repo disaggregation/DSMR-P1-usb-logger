@@ -25,13 +25,13 @@ try: #creating database
 		c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+","+str(gas_demand)+","+str(demand_power_L1)+","+str(demand_power_L2)+","+str(demand_power_L3)+","+str(supply_power_L1)+","+str(supply_power_L2)+","+str(supply_power_L3)+")")
 	except:
 		try:
-			# Insert a row of data with power for each line without gasmeter (gas = 0.0)
-			c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",0.0,"+str(demand_power_L1)+","+str(demand_power_L2)+","+str(demand_power_L3)+","+str(supply_power_L1)+","+str(supply_power_L2)+","+str(supply_power_L3)+")")
-			print("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",0.0,"+str(demand_power_L1)+","+str(demand_power_L2)+","+str(demand_power_L3)+","+str(supply_power_L1)+","+str(supply_power_L2)+","+str(supply_power_L3)+")")
+			# Insert a row of data with power for each line without gasmeter (gas = NULL)
+			c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",NULL,"+str(demand_power_L1)+","+str(demand_power_L2)+","+str(demand_power_L3)+","+str(supply_power_L1)+","+str(supply_power_L2)+","+str(supply_power_L3)+")")
+			print("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",NULL,"+str(demand_power_L1)+","+str(demand_power_L2)+","+str(demand_power_L3)+","+str(supply_power_L1)+","+str(supply_power_L2)+","+str(supply_power_L3)+")")
 		except:
-			try: # Insert a row of data with only total powers, set line powers and gas to zero
-				c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",0.0,0.0,0.0,0.0,0.0,0.0,0.0);")
-				print("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",0.0,0.0,0.0,0.0,0.0,0.0,0.0);")
+			try: # Insert a row of data with only total powers, set line powers and gas to NULL
+				c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",NULL,NULL,NULL,NULL,NULL,NULL,NULL);")
+				print("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",NULL,NULL,NULL,NULL,NULL,NULL,NULL);")
 			except:
 				print("powers not saved, currupt telegram?")
 
