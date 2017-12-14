@@ -27,6 +27,7 @@ fi
 printf "\e[96m* GENERAL\n"
 printf "\e[96m  - Update apt-get lists..."
 sudo apt-get update &>/dev/null
+sudo apt-get install screen
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Set timezone..."
