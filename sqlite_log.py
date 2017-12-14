@@ -33,7 +33,8 @@ try: #creating database
 				c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",NULL,NULL,NULL,NULL,NULL,NULL,NULL);")
 				print("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",NULL,NULL,NULL,NULL,NULL,NULL,NULL);")
 			except:
-				print("powers not saved, currupt telegram?")
+				c.execute("INSERT INTO loads VALUES (datetime(),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);")
+                                print("powers not saved, currupt telegram?")
 
 
 	#        c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+",0.0,0.0,0.0,0.0,0.0,0.0,0.0);")
