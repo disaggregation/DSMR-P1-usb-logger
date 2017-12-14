@@ -79,7 +79,7 @@ sudo rm tempcron
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Start DSMR P1 script..."
-screen -dmS atboot_P1_logger python schedule_p1_reader.py 2>&1 &>/dev/null 
+screen -dmS atboot_P1_logger python ${log_dir}/schedule_p1_reader.py 2>&1 &>/dev/null 
 printf "\e[92m - OK\e[0m\n"
 #***************************************************************************
 printf "\n\e[33mEnd of installation - disaggregation_logger-DSMR-P1-usb\n"
