@@ -56,6 +56,8 @@ printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Cleanup files..."
 sudo rm ${log_dir}/master.zip &>/dev/null
+sudo mv ${log_dir}/logger-DSMR-P1-usb-master/* .
+sudo rm ${log_dir}/logger-DSMR-P1-usb-master
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Changing file permissions and rights to pi..."
@@ -70,7 +72,7 @@ printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m* CONFIGURE\n"
 printf "\e[96m  - Set CRON-job..."
-sudo cd ${log_dir}/logger-DSMR-P1-usb-master
+sudo cd ${log_dir}
 echo "@reboot screen -dmS atboot_P1_logger python schedule_p1_reader.py 2>&1" >> tempcron
 crontab tempcron
 sudo rm tempcron
