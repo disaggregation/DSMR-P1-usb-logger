@@ -11,7 +11,7 @@
 #***************************************************************************
 printf "\e[33mInstallation - disaggregation_logger-DSMR-P1-usb v1.12\n\n"
 #***************************************************************************
-log_dir="/home/pi/dissagregation"
+log_dir="/home/pi/disaggregation"
 read -e -i "$log_dir" -p "Please enter your name: " input
 log_dir="${input:-$name}"
 
@@ -20,7 +20,7 @@ printf "\e[96m  - Check if USB Serial port is found..."
 if ls /dev | grep 'ttyUSB0' >/dev/null 2>&1; then
   printf "\e[92mOK\e[0m\n"
 else
-  printf "\e[91mNOT FOUND!, aborting installation!\e[0m\n"
+  printf "\e[91mUSB NOT FOUND! Aborting installation!\e[0m\n"
   exit
 fi
 #***************************************************************************
