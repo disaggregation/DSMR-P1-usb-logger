@@ -20,6 +20,7 @@ try: #creating database
 		conn = sqlite3.connect(db)
 		c = conn.cursor()
 		c.execute('''CREATE TABLE loads (date datetime, lowtarif_demand real, hightarif_demand real, lowtarif_supply real, hightarif_supply real, demand_power real, supply_power real, gas_demand real, demand_power_L1 real, demand_power_L2 real, demand_power_L3 real, supply_power_L1 real, supply_power_L2 real, supply_power_L3 real)''')
+		c.execute('''CREATE VIEW loadsonly(datetime,demand) AS SELECT date,demand_power FROM loads''')
 
 	try:	# Insert a row of data with power for each line and gas
 		c.execute("INSERT INTO loads VALUES (datetime(),"+str(lowtarif_demand)+","+str(hightarif_demand)+","+str(lowtarif_supply)+","+str(hightarif_supply)+","+str(demand_power)+","+str(supply_power)+","+str(gas_demand)+","+str(demand_power_L1)+","+str(demand_power_L2)+","+str(demand_power_L3)+","+str(supply_power_L1)+","+str(supply_power_L2)+","+str(supply_power_L3)+")")
