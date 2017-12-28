@@ -14,13 +14,13 @@ def test(dirout=os.path.dirname(os.path.realpath(__file__)),
             telegram=myfile.read()
         print (telegram)
 
-    try:
-        serial_number, values = process_p1_telegram(telegram)
-    except:
-        print("processing failed")
-        return
+    #try:
+    serial_number, values = process_p1_telegram(telegram)
+    #except:
+    #    print("processing failed")
+    #    return
 
-    sqlite_log(serial_number, values, logfolder=logfolder)
+    sqlite_log(serial_number, values, logfolder=logfolder,db_name="P1_observations.db")
 
     try:
         execfile("mysql_logger.py")

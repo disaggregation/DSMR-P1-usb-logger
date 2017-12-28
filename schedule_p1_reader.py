@@ -10,7 +10,7 @@ def job(logfolder="logs"):
   print "P1 read started..." + time.strftime("%Y-%m-%d %H:%M:%S")
   telegram = read_p1_telegram(logfolder=logfolder)
   serial_number, values = process_p1_telegram(telegram)
-  sqlite_log(serial_number, values, logfolder=logfolder)
+  sqlite_log(serial_number, values, logfolder=logfolder,db_name="P1_observations.db")
 
 while True:
   job()

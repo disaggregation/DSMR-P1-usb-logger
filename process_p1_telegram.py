@@ -5,7 +5,7 @@
 import re
 
 
-def process_p1_telegram(telegram):
+def process_p1_telegram(telegram,serial_number="1cb93dd0babab36e9e5efe90a47d7824"):
     result = {"lowtarif_demand": "NULL",
               "hightarif_demand": "NULL",
               "lowtarif_supply": "NULL",
@@ -24,10 +24,10 @@ def process_p1_telegram(telegram):
               }
 
     # search meter serial number
-    x=re.finditer("\/[\s]*(.*)[\s]*\n", telegram)  # Match
-    for m in x:
-        serial_number = m.group(1)
-        print ("serial_number '"+serial_number+"'")
+    #x=re.finditer("\/[\s]*(.*)[\s]*\n", telegram)  # Match
+    #for m in x:
+    #    serial_number = m.group(1)
+    #    print ("serial_number '"+serial_number+"'")
 
     # the regular expression to find DSMR power and energy electricity meter readings
     reg_expression = ":([0-9]?[1-2]\.[7-8]\.[0-2])\(([0-9]*\.[0-9]*)\*(kW[h]?)\)"

@@ -2,14 +2,17 @@ import sqlite3
 import os.path
 import hashlib
 
-
-def sqlite_log(serial_number, values,logfolder="logs"):
+def sqlite_log(serial_number, values, db_name=False, logfolder="logs"):
     #check if serial number is given, else save data to example.db
-    try:
-        db_name = hashlib.md5(str(serial_number)).hexdigest() #hash serial number for security reasons (eg. data sharing with no backtrace)
-        db = os.path.join(os.path.dirname(os.path.realpath(__file__)),logfolder,db_name+'.db')
-    except:
-        db = os.path.join(os.path.dirname(os.path.realpath(__file__)),logfolder,'example.db')
+    if db_name==False:
+        try:
+            db_name = hashlib.md5(str(serial_number)).hexdigest() #hash serial number for security reasons (eg. data sharing with no backtrace)
+            db = os.path.join(os.path.dirname(os.path.realpath(__file__)),logfolder,db_name+'.db')
+        except:
+            db = os.path.join(os.path.dirname(os.path.realpath(__file__)),logfolder,'example.db')
+    else:
+        db = os.path.join(os.path.dirname(os.path.realpath(__file__)), logfolder, db_name)
+
     try: #creating database
         #  Create table (if not database dous not exist)
         if os.path.isfile(db):
@@ -71,4 +74,4 @@ def main():
     return
 
 if __name__ == "__main__":
-    main()
+	main()
