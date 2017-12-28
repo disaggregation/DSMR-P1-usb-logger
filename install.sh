@@ -11,8 +11,8 @@
 #***************************************************************************
 printf "\e[33mInstallation - disaggregation_logger-DSMR-P1-usb v1.12\n\n"
 #***************************************************************************
-log_dir="/home/pi/dissagregation"
-read -e -i "$log_dir" -p "Please enter your name: " input
+log_dir="/home/pi/disaggregation"
+read -e -i "$log_dir" -p "Please enter your prefered directory: " input
 log_dir="${input:-$name}"
 
 printf "\e[96m* CHECK\n"
@@ -20,7 +20,7 @@ printf "\e[96m  - Check if USB Serial port is found..."
 if ls /dev | grep 'ttyUSB0' >/dev/null 2>&1; then
   printf "\e[92mOK\e[0m\n"
 else
-  printf "\e[91mNOT FOUND!, aborting installation!\e[0m\n"
+  printf "\e[91mUSB NOT FOUND! Aborting installation!\e[0m\n"
   exit
 fi
 #***************************************************************************
@@ -73,7 +73,7 @@ printf "\e[92mOK\e[0m\n"
 printf "\e[96m* CONFIGURE\n"
 printf "\e[96m  - Set CRON-job..."
 sudo cd ${log_dir}
-echo "@reboot screen -dmS atboot_P1_logger python schedule_p1_reader.py 2>&1" >> tempcron
+echo "@reboot screen -dmS atboot_P1_logger python  ${log_dir}/schedule_p1_reader.py 2>&1" >> tempcron
 crontab tempcron
 sudo rm tempcron
 printf "\e[92mOK\e[0m\n"

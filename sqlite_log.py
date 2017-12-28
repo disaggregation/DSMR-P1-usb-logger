@@ -2,6 +2,7 @@ import sqlite3
 import os.path
 import hashlib
 
+
 def sqlite_log(serial_number, values,logfolder="logs"):
     #check if serial number is given, else save data to example.db
     try:
@@ -70,4 +71,4 @@ def main():
     return
 
 if __name__ == "__main__":
-	main()
+    main()

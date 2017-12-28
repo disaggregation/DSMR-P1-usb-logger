@@ -5,4 +5,9 @@
 # ignore log files
 logs/lastP1read.txt
 logs/*
+logs
+logs/cronlog
+
+#required for testing
 !logs/example.db
+!logs/testP1telegram.txt
