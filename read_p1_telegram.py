@@ -8,7 +8,6 @@ import serial
 import signal
 import os
 
-
 #set timeonut
 def handler(signum, frame):
     ser.close()
@@ -24,34 +23,34 @@ def read_DSMR_telegram(ser, telegram = ''):
 
     #Open COM port
     ser.open()
-    #	except:
-    #		sys.exit ("Coul not open serial '%s'. Aaaaarch."  % ser.name)
-
-    # Set the signal handler and a 15-second alarm
+#    except:
+#        sys.exit ("Coul not open serial '%s'. Aaaaarch."  % ser.name)
+    
+	# Set the signal handler and a 15-second alarm
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(15)
-
+    
     while True:
         #proces serial line to string
         p1_raw = ser.readline()
         p1_str=str(p1_raw)
         p1_line=p1_str.strip()
-
+    
         #print for debugging purpose
-        print (p1_line)
-
+        print (p1_line) 
+    
         #add line to telegram
         telegram += str(p1_line) + '\n'
-
+    
         # stop reading if '!' was found (DSMR telegram ends with it.)
-        if len(p1_line) > 0:
+	if len(p1_line) > 0:
             if p1_line[0] == '!':
-                #Close port and show status
-                try:
-                    ser.close()
-                except:
-                    sys.exit ("Oops %s. Program aborted. Could not close serial port" % ser.name )
-                    break
+    	    #Close port and show status
+    	    	try:
+    	             ser.close()
+    	    	except:	
+    	             sys.exit ("Oops %s. Program aborted. Could not close serial port" % ser.name )
+    	        break
 
     signal.alarm(0)          # Disable the alarm
     return telegram
