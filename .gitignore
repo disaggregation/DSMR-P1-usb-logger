@@ -1,6 +1,7 @@
 # ignore user db's ecept example.db
 *.db
 !example.db
+*.pyc
 
 # ignore log files
 logs/lastP1read.txt
