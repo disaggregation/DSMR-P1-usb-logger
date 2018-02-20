@@ -19,7 +19,7 @@ def upload_to_server(path_to_file):
 #save all files in de folder data to server
 path= "./upload/"
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, realpath
 
 onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
 print (onlyfiles)
@@ -34,7 +34,7 @@ for file in onlyfiles:
 import ftplib
 ftp = ftplib.FTP()
 host = "ftp.allianders.nl"
-path = ''
+path = join(realpath(__file__),"logs")
 filename = 'example.db'
 
 port = 21

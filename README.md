@@ -1,33 +1,27 @@
 # P1 DSMR reader for the open source disaggregation project
 Open Source project to log data from the DSMR (P1) meter via usb serial cable
 
-## installation
-
-To install the p1 USB reader run the following commands in your terminal:
+## Installation
+To install the P1 USB reader run the following commands in your terminal:
 
 ```
-mkdir disaggregation
-cd disaggregation
-git clone https://github.com/disaggregation/logger-DSMR-P1-usb
+sudo wget https://raw.githubusercontent.com/disaggregation/logger-DSMR-P1-usb/master/install.sh
+
+sudo chmod +x install.sh && sudo ./install.sh
 ```
 
-To run the script after each reboot:
-```crontab -e```
+After the installer is finished, the schedular will launch directly and at every reboot!
+The P1 data is recorded every 10 seconds, which leads to about aprox. 1MB per day. Make sure you have enough space!
 
-Add this line to the crontab file:
- ```@reboot /usr/bin/python /path/to/disaggregation/logger-DSMR-P1-usb/schedule_p1_reader.py 2>&1```
- 
-The file will launch the scheduler at reboot and record data every 10 seconds, which leads to about 1Mb per day. Make sure you have enough space..
+## Hardware requirements
+- Raspberry Pi
+- USB <> Serial cable (https://www.sossolutions.nl/slimme-meter-kabel)
 
-## hardware requirements
-- raspberry pi
-- usb to serial cable (https://www.sossolutions.nl/slimme-meter-kabel)
+## Data storage
+A SQlite database file (.db) wil be created to store the P1 data, the filename is a MD5 hash name.
 
-## data storage
-The data will be stored to a sqlite file 'data/yourhash256edmeterserialnumber.db'
-Mysql logging is support, but required more setup skills.
+(Mysql logging is supported, but requires more setup skills.)
 
-# disaggregation
+# Disaggregation
 This repository will soon be updates with a working disaggregation model that determines which subload are behind your energy meter.
 Pleas visit www.allianders.nl/disaggregation/demo/ to see the current disaggregate allogaritems results. An upload page for your data will be provided soon.
-
