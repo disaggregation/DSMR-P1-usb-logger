@@ -19,6 +19,7 @@ else:
         conn = sqlite3.connect(db)
         c = conn.cursor()
 	c.execute('''CREATE TABLE loads (date datetime, lowtarif_demand real, hightarif_demand real, lowtarif_supply real, hightarif_supply real, demand_power real, supply_power real, gas_demand real, demand_power_L1 real, demand_power_L2 real, demand_power_L3 real, supply_power_L1 real, supply_power_L2 real, supply_power_L3 real)''')
+	c.execute('''CREATE VIEW IF NOT EXISTS loadsonly  (datetime,demand) AS SELECT date,demand_power FROM loads''')
 
 try:
 	# Insert a row of data
