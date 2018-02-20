@@ -31,6 +31,8 @@ def sqlite_log(serial_number, values, db_name=False, logfolder="logs"):
                                         demand_power_L2 real, demand_power_L3 real, supply_power_L1 real,
                                         supply_power_L2 real, supply_power_L3 real, voltage real, current real)'''
             c.execute(sql)
+        	c.execute('''CREATE VIEW IF NOT EXISTS loadsonly  (datetime,demand) AS SELECT date,demand_power FROM loads''')
+            
     except:
         print("Could not create database")
         return
