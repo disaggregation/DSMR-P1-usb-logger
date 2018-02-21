@@ -65,20 +65,26 @@ def create_log_folder(dirout=os.path.dirname(os.path.realpath(__file__)),
 def read_p1_telegram(dirout=os.path.dirname(os.path.realpath(__file__)),
                      logfolder="logs",
                      logfile="lastP1read.txt"):
-
+    global type
     create_log_folder(dirout=dirout,logfolder=logfolder)
 
-    print ("USB DSMR P1 telegram reader, version " + version)
-    print ("Control-C to exit")
+#    print ("USB DSMR P1 telegram reader, version " + version)
+    print ("Waiting for next telegram... Control-C to exit")
 
     # Set COM port config
     try:
         ser
     except:
-        ser = serial.Serial()
-        ser.baudrate = 9600
-        ser.bytesize = serial.SEVENBITS
-        ser.parity = serial.PARITY_EVEN
+	ser = serial.Serial()
+	if type == 9600:
+        	ser.baudrate = 9600
+        	ser.bytesize = serial.SEVENBITS
+        	ser.parity = serial.PARITY_EVEN
+    	else:
+		ser.baudrate = 115200
+       		ser.parity=serial.PARITY_NONE
+        	ser.bytesize=serial.EIGHTBITS
+
     ser.stopbits = serial.STOPBITS_ONE
     ser.xonxoff = 0
     ser.rtscts = 0
@@ -88,22 +94,24 @@ def read_p1_telegram(dirout=os.path.dirname(os.path.realpath(__file__)),
     try:
         telegram = read_DSMR_telegram(ser)
     except:
-        print ("Increased baudrate to 115200, retrying serial")
-        #    try:
+        print ("Increasing baudrate to 115200, retrying serial")
+	type = 115200
         try:
             ser.close()
         except:
             print("could not close serial")
-        ser.baudrate = 115200
-        ser.parity=serial.PARITY_NONE
-        ser.bytesize=serial.EIGHTBITS
-        try:
-            telegram = read_DSMR_telegram(ser)
-        except:
-            print("115200 also faile, faling back to 9600")
-        ser.baudrate = 9600
-        ser.bytesize=serial.SEVENBITS
-        ser.parity=serial.PARITY_EVEN
+
+#        ser.baudrate = 115200
+#        ser.parity=serial.PARITY_NONE
+#        ser.bytesize=serial.EIGHTBITS
+#        try:
+#            telegram = read_p1_telegram()
+#        except:
+#            print("115200 also failed, faling back to 9600")
+#	    type = 9600
+#        ser.baudrate = 9600
+#        ser.bytesize=serial.SEVENBITS
+#        ser.parity=serial.PARITY_EVEN
 
     text_file = open(os.path.join(dirout,logfolder,logfile), "w")
     text_file.write(telegram)
