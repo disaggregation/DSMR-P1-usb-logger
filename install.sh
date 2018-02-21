@@ -17,7 +17,8 @@ log_dir="${input:-$name}"
 
 printf "\e[96m* CHECK\n"
 printf "\e[96m  - Check if USB Serial port is found..."
-if ls /dev | grep 'ttyUSB0' >/dev/null 2>&1; then
+#comment by Arne: I changed ttyUSB0 to ttyUSB, because serial does not have to be on usb port 0
+if ls /dev | grep 'ttyUSB' >/dev/null 2>&1; then 
   printf "\e[92mOK\e[0m\n"
 else
   printf "\e[91mUSB NOT FOUND! Aborting installation!\e[0m\n"
@@ -43,6 +44,7 @@ printf "\e[92mOK\e[0m\n"
 printf "\e[96m* DSRM LOGGER FILES\n"
 printf "\e[96m  - Creating folder structure(s)..."
 sudo mkdir $log_dir &>/dev/null
+sudo mkdir $log_dir "/data" &>/dev/null
 printf "\e[92mOK\e[0m\n"
 #***************************************************************************
 printf "\e[96m  - Downloading files..."
