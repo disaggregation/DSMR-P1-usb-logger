@@ -94,12 +94,17 @@ def read_p1_telegram(dirout=os.path.dirname(os.path.realpath(__file__)),
     try:
         telegram = read_DSMR_telegram(ser)
     except:
-        print ("Increasing baudrate to 115200, retrying serial")
-	type = 115200
-        try:
+	try:
             ser.close()
         except:
             print("could not close serial")
+	print ("Increasing baudrate to 115200, retrying serial")
+        if type == 9600:
+		type = 115200
+	        telegram = read_p1_telegram()
+	else:
+		type = 9600
+		telegram = 'read failed'
 
 #        ser.baudrate = 115200
 #        ser.parity=serial.PARITY_NONE
