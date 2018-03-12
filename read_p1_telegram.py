@@ -56,14 +56,14 @@ def read_DSMR_telegram(ser, telegram = ''):
     return telegram
 
 def create_log_folder(dirout=os.path.dirname(os.path.realpath(__file__)),
-                     logfolder="logs"):
+                     logfolder="../data/logs"):
     # Create "logs" folder if not exists.
     if not os.path.exists(os.path.join(dirout,logfolder)):
         os.makedirs(os.path.join(dirout,logfolder))
     return
 
 def read_p1_telegram(dirout=os.path.dirname(os.path.realpath(__file__)),
-                     logfolder="logs",
+                     logfolder="../data/logs",
                      logfile="lastP1read.txt"):
     global type
     create_log_folder(dirout=dirout,logfolder=logfolder)

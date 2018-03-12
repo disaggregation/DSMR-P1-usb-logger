@@ -2,7 +2,7 @@ import sqlite3
 import os.path
 import hashlib
 
-def sqlite_log(serial_number, values, db_name=False, logfolder="logs"):
+def sqlite_log(serial_number, values, db_name=False, logfolder="../data/logs"):
     #check if serial number is given, else save data to example.db
     if db_name==False:
         try:

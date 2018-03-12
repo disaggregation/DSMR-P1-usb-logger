@@ -4,7 +4,7 @@ from sqlite_log import sqlite_log
 
 print ("P1 read test started..." + time.strftime("%Y-%m-%d %H:%M:%S"))
 def test(dirout=os.path.dirname(os.path.realpath(__file__)),
-         logfolder="logs"):
+         logfolder="../data/logs"):
     try:
         from read_p1_telegram import read_p1_telegram
         telegram = read_p1_telegram(logfolder=logfolder)

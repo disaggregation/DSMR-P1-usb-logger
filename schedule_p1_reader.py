@@ -6,7 +6,7 @@ from sqlite_log import sqlite_log
 # Chang to current work directory
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-def job(logfolder="logs"):
+def job(logfolder="../data/logs"):
   print "Serial read (P1) started..." + time.strftime("%Y-%m-%d %H:%M:%S")
   telegram = read_p1_telegram(logfolder=logfolder)
   serial_number, values = process_p1_telegram(telegram)
