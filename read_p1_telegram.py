@@ -63,7 +63,7 @@ def create_log_folder(dirout=os.path.dirname(os.path.realpath(__file__)),
     return
 
 def read_p1_telegram(dirout=os.path.dirname(os.path.realpath(__file__)),
-                     logfolder="../data/logs",
+                     logfolder="../data",
                      logfile="lastP1read.txt"):
     global type
     create_log_folder(dirout=dirout,logfolder=logfolder)
