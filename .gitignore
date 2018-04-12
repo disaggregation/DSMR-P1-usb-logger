@@ -12,3 +12,5 @@ logs/cronlog
 #required for testing
 !logs/example.db
 !logs/testP1telegram.txt
+
+.DS_Store
